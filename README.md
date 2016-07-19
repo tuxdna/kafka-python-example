@@ -134,6 +134,7 @@ The above error is a known issue and can be resolved using Kafka to version 0.10
 
 ## References
 
- Follow this tutorial to setup Kafka:
+ * Follow this tutorial to setup Kafka: https://www.mapr.com/blog/getting-started-sample-programs-apache-kafka-09
+ * Kafka Official Documentation: https://kafka.apache.org/documentation.html
+ * Python Kafka API: https://kafka-python.readthedocs.io/en/master/simple.html
 
- * https://www.mapr.com/blog/getting-started-sample-programs-apache-kafka-09
