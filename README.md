@@ -130,7 +130,50 @@ The above error is a known issue and can be resolved using Kafka to version 0.10
 
  * https://mail-archives.apache.org/mod_mbox/kafka-users/201607.mbox/%3CCAK2DJU9H9VNJJQajSUD0E1i_89SnuoFC99vmVoAELndD=xqm8A@mail.gmail.com%3E 
  * https://issues.apache.org/jira/browse/KAFKA-3547
+
+## Replay messages
+
+There are two ways to replay messages:
+
+ * Using replay tool
+ * Using the API
  
+ 
+### Using replay tool
+
+References:
+
+ * https://community.hortonworks.com/questions/17840/kafka-system-tools-for-replay.html
+ * https://cwiki.apache.org/confluence/display/KAFKA/System+Tools#SystemTools-ReplayLogProducer
+
+First obtain a list of topics
+
+```
+$ bin/kafka-topics.sh  --list --zookeeper localhost:2181
+__consumer_offsets
+fast-messages
+summary-markers
+```
+
+Next we use a Kafka Tool that can help us replay all the messages
+
+Create a new topic
+
+```
+$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic fast-messages2
+Created topic "fast-messages2".
+```
+
+Replay the messages onto new topic
+
+```
+$ bin/kafka-run-class.sh kafka.tools.ReplayLogProducer --sync --broker-list localhost:9092 --inputtopic fast-messages --outputtopic fast-messages2 --zookeeper localhost:2181
+```
+
+
+### TODO: Replay using API
+
+TBD
 
 ## References
 
